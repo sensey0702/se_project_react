@@ -8,6 +8,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  visibility: hidden;
+}
+
+.modal_opened {
+  visibility: visible;
 }
 
 .modal__content {
@@ -51,6 +56,10 @@
   margin: 0;
   font-size: 16px;
   line-height: 20px;
+}
+
+.modal__label_type_radio {
+  margin: 0 0 8px;
 }
 
 .modal__label_type_radio {
