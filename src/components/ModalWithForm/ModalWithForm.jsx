@@ -1,12 +1,6 @@
 import "./ModalWithForm.css";
 
-function ModalWithForm({
-  children,
-  buttonText,
-  title,
-  activeModal,
-  handleCloseClick,
-}) {
+function ModalWithForm({ children, buttonText, title, activeModal, onClose }) {
   return (
     <div className={`modal ${activeModal === "add-garment" && "modal_opened"}`}>
       <div className="modal__content">
@@ -14,7 +8,7 @@ function ModalWithForm({
         <button
           type="button"
           className="modal__close"
-          onClick={handleCloseClick}
+          onClick={onClose}
         ></button>
         <form className="modal__form">
           {children}
