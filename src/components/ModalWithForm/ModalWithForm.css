@@ -60,10 +60,11 @@
 
 .modal__label_type_radio {
   margin: 0 0 8px;
+  color: rgba(0, 0, 0, 0.5);
 }
 
-.modal__label_type_radio {
-  margin: 0 0 8px;
+.modal__label_type_radio:has(.modal__radio-input:checked) {
+  color: black;
 }
 
 .modal__input {
@@ -96,6 +97,12 @@
 
 .modal__radio-input {
   margin-right: 8px;
+  width: 16px;
+  height: 16px;
+}
+
+.modal__radio-input:checked {
+  accent-color: black;
 }
 
 .modal__submit {
