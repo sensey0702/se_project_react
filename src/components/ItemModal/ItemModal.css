@@ -1,0 +1,47 @@
+.modal__content_type_image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: 0;
+  max-width: 498px;
+}
+
+.modal__close_type_image {
+  top: 24px;
+  right: 24px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+}
+
+.modal__image {
+  max-height: 498px;
+  max-width: 498px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.modal__footer {
+  padding-left: 32px;
+  margin-top: 20px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 498px;
+}
+
+.modal__caption {
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
+  max-width: 400px;
+}
+
+.modal__weather {
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
+  max-width: 400px;
+}
