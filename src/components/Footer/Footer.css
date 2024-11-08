@@ -17,9 +17,16 @@
   margin: 0;
 }
 
-@media screen and (min-width: 744px) and (max-width: 1084px) {
+@media screen and (min-width: 320px) and (max-width: 550px) {
   .footer {
     font-size: 12px;
+    line-height: 1.2;
+  }
+}
+
+@media screen and (min-width: 744px) and (max-width: 1084px) {
+  .footer {
+    font-size: 14px;
     line-height: 1.2;
   }
 }
