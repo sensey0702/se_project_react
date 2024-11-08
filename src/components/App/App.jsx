@@ -39,20 +39,21 @@ function App() {
       .catch(console.error);
   }, []);
 
-  const handleEscClose = (evt) => {
-    if (evt.key === "Escape") {
-      closeActiveModal();
-    }
-  };
-
-  const handleOverlayClick = (evt) => {
-    if (evt.target.classList.contains("modal_opened")) {
-      closeActiveModal();
-    }
-  };
-
   useEffect(() => {
     if (!activeModal) return;
+
+    const handleEscClose = (evt) => {
+      if (evt.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    const handleOverlayClick = (evt) => {
+      if (evt.target.classList.contains("modal_opened")) {
+        closeActiveModal();
+      }
+    };
+
     document.addEventListener("keydown", handleEscClose);
     document.addEventListener("mousedown", handleOverlayClick);
 
@@ -83,7 +84,7 @@ function App() {
               placeholder="Name"
             />
           </label>
-          <label htmlFor="imageUrl" className="modal__label">
+          <label htmlFor="imageURL" className="modal__label">
             Image{" "}
             <input
               type="url"
@@ -99,7 +100,12 @@ function App() {
               htmlFor="hot"
               className="modal__label modal__label_type_radio"
             >
-              <input type="radio" className="modal__radio-input" id="hot" />
+              <input
+                name="weather-type"
+                type="radio"
+                className="modal__radio-input"
+                id="hot"
+              />
               Hot
             </label>
 
@@ -107,14 +113,24 @@ function App() {
               htmlFor="warm"
               className="modal__label modal__label_type_radio"
             >
-              <input type="radio" className="modal__radio-input" id="warm" />
+              <input
+                name="weather-type"
+                type="radio"
+                className="modal__radio-input"
+                id="warm"
+              />
               Warm
             </label>
             <label
               htmlFor="cold"
               className="modal__label modal__label_type_radio"
             >
-              <input type="radio" className="modal__radio-input" id="cold" />
+              <input
+                name="weather-type"
+                type="radio"
+                className="modal__radio-input"
+                id="cold"
+              />
               Cold
             </label>
           </fieldset>
