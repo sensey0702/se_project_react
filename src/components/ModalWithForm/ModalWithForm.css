@@ -115,10 +115,24 @@
   height: 36px;
   font-size: 16px;
   line-height: 20px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0);
   padding: 8px 16px;
   color: white;
   border-radius: 4px;
   border: none;
   font-weight: 700;
+}
+
+.modal__submit:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal__submit:disabled {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (min-width: 320px) and (max-width: 550px) {
+  .modal__content {
+    max-width: 300px;
+  }
 }

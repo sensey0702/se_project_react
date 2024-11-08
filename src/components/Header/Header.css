@@ -29,3 +29,36 @@
 .header__username {
   margin: 0;
 }
+
+@media screen and (min-width: 320px) and (max-width: 743px) {
+  .header {
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .header__logo {
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+
+  .header__add-clothes-btn {
+    border: solid 4px black;
+    margin: 20px 0 0;
+    padding: 8px;
+  }
+
+  .header__user-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (min-width: 744px) and (max-width: 1084px) {
+  .header {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+}
