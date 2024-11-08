@@ -39,6 +39,29 @@ function App() {
       .catch(console.error);
   }, []);
 
+  const handleEscClose = (evt) => {
+    if (evt.key === "Escape") {
+      closeActiveModal();
+    }
+  };
+
+  const handleOverlayClick = (evt) => {
+    if (evt.target.classList.contains("modal_opened")) {
+      closeActiveModal();
+    }
+  };
+
+  useEffect(() => {
+    if (!activeModal) return;
+    document.addEventListener("keydown", handleEscClose);
+    document.addEventListener("mousedown", handleOverlayClick);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+      document.removeEventListener("mousedown", handleOverlayClick);
+    };
+  }, [activeModal]);
+
   return (
     <div className="page">
       <div className="page__content">
@@ -47,8 +70,9 @@ function App() {
         <ModalWithForm
           buttonText="Add garment"
           title="New garment"
-          activeModal={activeModal}
           onClose={closeActiveModal}
+          isOpen={activeModal === "add-garment"}
+          name="add-garment"
         >
           <label htmlFor="name" className="modal__label">
             Name{" "}
@@ -70,6 +94,7 @@ function App() {
           </label>
           <fieldset className="modal__radio-buttons">
             <legend className="modal__legend">Select the weather type:</legend>
+
             <label
               htmlFor="hot"
               className="modal__label modal__label_type_radio"
@@ -77,6 +102,7 @@ function App() {
               <input type="radio" className="modal__radio-input" id="hot" />
               Hot
             </label>
+
             <label
               htmlFor="warm"
               className="modal__label modal__label_type_radio"
@@ -97,6 +123,7 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           onClose={closeActiveModal}
+          isOpen={activeModal === "preview"}
         />
         <Footer />
       </div>
