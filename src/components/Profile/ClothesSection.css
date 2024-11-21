@@ -1,0 +1,38 @@
+.clothes-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.clothes-section__wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  height: 56px;
+  gap: 20px;
+}
+
+.clothes-section__text {
+  margin: 0;
+}
+
+.clothes-section__button {
+  width: 88px;
+  height: 25px;
+  border-style: none;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 20px;
+  line-height: 1.2;
+  text-align: center;
+  padding: 0px;
+  font-weight: 700;
+}
+
+.clothes-section__cards {
+  margin: 0px;
+  max-width: 1015px;
+  height: 676px;
+  display: flex;
+  flex-wrap: wrap;
+}

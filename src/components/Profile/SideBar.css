@@ -1,0 +1,20 @@
+.sidebar {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  max-width: 300px;
+  align-items: center;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+}
+
+.sidebar__username {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0px;
+  text-align: center;
+}
