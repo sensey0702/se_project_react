@@ -18,16 +18,16 @@ function AddItemModal({ activeModal, onAddItem, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, imageUrl, weather });
+    return onAddItem({ name, imageUrl, weather })
+      .then(() => {
+        setName("");
+        setImageUrl("");
+        setWeather("");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
-
-  useEffect(() => {
-    if (!activeModal) {
-      setName("");
-      setImageUrl("");
-      setWeather("");
-    }
-  }, [activeModal]);
 
   return (
     <ModalWithForm

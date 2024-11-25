@@ -48,19 +48,26 @@ function App() {
 
   const handleAddItemSubmit = (item) => {
     console.log(item);
-    setClothingItems([item, ...clothingItems]);
-    addNewCard(item);
-    closeActiveModal();
+    //adding the card to the server
+    return addNewCard(item).then((newCard) => {
+      //addiing the card to the dom
+      setClothingItems([newCard, ...clothingItems]);
+      closeActiveModal();
+    });
   };
 
   const handleDeleteCard = () => {
-    // contain API call
-    deleteCard(selectedCard);
-    // after successful call, setClothingItems(clothingItems.filter().map()) ?
-
-    // create a copy for the array and exclude deleted selectedcard
-
-    closeActiveModal();
+    return deleteCard(selectedCard)
+      .then(() => {
+        const updatedItems = clothingItems.filter((item) => {
+          return item._id !== selectedCard._id;
+        });
+        setClothingItems(updatedItems);
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   useEffect(() => {
