@@ -48,7 +48,7 @@ function App() {
   const handleAddItemSubmit = (item) => {
     console.log(item);
     setClothingItems([item, ...clothingItems]);
-    setActiveModal("");
+    closeActiveModal();
   };
 
   useEffect(() => {
