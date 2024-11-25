@@ -8,12 +8,13 @@ import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
 import Footer from "../Footer/Footer";
 import Profile from "../Profile/Profile";
+import AddItemModal from "../AddItemModal/AddItemModal";
 
 import { coordinates, APIkey } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems } from "../../utils/api";
+
+import { deleteCard, getItems, addNewCard } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -48,6 +49,17 @@ function App() {
   const handleAddItemSubmit = (item) => {
     console.log(item);
     setClothingItems([item, ...clothingItems]);
+    addNewCard(item);
+    closeActiveModal();
+  };
+
+  const handleDeleteCard = () => {
+    // contain API call
+    deleteCard(selectedCard);
+    // after successful call, setClothingItems(clothingItems.filter().map()) ?
+
+    // create a copy for the array and exclude deleted selectedcard
+
     closeActiveModal();
   };
 
@@ -134,6 +146,8 @@ function App() {
             card={selectedCard}
             onClose={closeActiveModal}
             isOpen={activeModal === "preview"}
+            name="preview"
+            deleteCard={handleDeleteCard}
           />
           <Footer />
         </CurrentTemperatureUnitContext.Provider>
