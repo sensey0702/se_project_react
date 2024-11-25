@@ -45,8 +45,10 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
-  const onAddItem = (values) => {
-    console.log(values);
+  const handleAddItemSubmit = (item) => {
+    console.log(item);
+    setClothingItems([item, ...clothingItems]);
+    setActiveModal("");
   };
 
   useEffect(() => {
@@ -124,7 +126,7 @@ function App() {
 
           <AddItemModal
             activeModal={activeModal}
-            onAddItem={onAddItem}
+            onAddItem={handleAddItemSubmit}
             onClose={closeActiveModal}
           />
           <ItemModal
