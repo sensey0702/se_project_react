@@ -85,8 +85,20 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
     },
     {
-      "name": "shirt",
-      "imageUrl": "https://m.media-amazon.com/images/I/61owdlDd7wL._AC_UY1000_.jpg",
+      "name": "Puffy Coat",
+      "imageUrl": "https://media.istockphoto.com/id/1309941993/vector/pink-winter-jacket.jpg?s=612x612&w=0&k=20&c=CZWSB7HSGpulp66XVaoheI-dqgALCI9c72XSOjwBwHg=",
+      "weather": "cold",
+      "_id": 17
+    },
+    {
+      "name": "Mittens",
+      "imageUrl": "https://static.vecteezy.com/system/resources/previews/029/890/035/non_2x/santa-mittens-red-winter-mittens-christmas-flat-cartoon-mittens-winter-mittens-isolated-on-white-background-free-vector.jpg",
+      "weather": "cold",
+      "_id": 18
+    },
+    {
+      "name": "Boots",
+      "imageUrl": "https://static.vecteezy.com/system/resources/previews/030/205/228/non_2x/warm-boots-winter-shoes-colored-cartoon-doodle-of-clothes-hand-drawn-illustration-single-drawing-isolated-on-white-background-element-for-christmas-design-print-sticker-card-decor-vector.jpg",
       "weather": "cold",
       "_id": 19
     }

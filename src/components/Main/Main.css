@@ -1,5 +1,7 @@
 .cards {
   margin-top: 40px;
+  min-height: fit-content;
+  height: 735px;
 }
 
 .cards__text {

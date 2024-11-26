@@ -61,6 +61,12 @@
   }
 }
 
+@media screen and (min-width: 745px) and (max-width: 800px) {
+  .header__username {
+    max-width: 80px;
+  }
+}
+
 @media screen and (min-width: 744px) and (max-width: 1084px) {
   .header {
     font-size: 16px;
