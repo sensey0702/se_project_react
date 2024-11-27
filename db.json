@@ -101,6 +101,12 @@
       "imageUrl": "https://static.vecteezy.com/system/resources/previews/030/205/228/non_2x/warm-boots-winter-shoes-colored-cartoon-doodle-of-clothes-hand-drawn-illustration-single-drawing-isolated-on-white-background-element-for-christmas-design-print-sticker-card-decor-vector.jpg",
       "weather": "cold",
       "_id": 19
+    },
+    {
+      "name": "Swimsuit",
+      "imageUrl": "https://www.creativefabrica.com/wp-content/uploads/2023/01/12/Swimsuit-for-women-Cartoon-drawing-of-s-Graphics-57367835-1.jpg",
+      "weather": "hot",
+      "_id": 20
     }
   ]
 }
