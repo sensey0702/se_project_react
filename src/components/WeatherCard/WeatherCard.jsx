@@ -10,7 +10,11 @@ function WeatherCard({ weatherData }) {
       <p className="weather-card__temp">
         {weatherData.temp[currentTemperatureUnit]}
       </p>
-      <img src={sunny} alt="" className="weather-card__image" />
+      <img
+        src={sunny}
+        alt="sunny weather banner"
+        className="weather-card__image"
+      />
     </section>
   );
 }
