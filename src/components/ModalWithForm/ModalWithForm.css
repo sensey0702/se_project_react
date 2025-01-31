@@ -30,6 +30,10 @@
   padding: 28px 28px 36px;
 }
 
+.modal__content_type_login {
+  padding: 28px 28px 36px;
+}
+
 .modal__title {
   margin: 0 0 24px;
   font-size: 16px;
@@ -48,6 +52,11 @@
   width: 16px;
   height: 16px;
   border: none;
+}
+
+.modal__close_content_type_login {
+  width: 20px;
+  height: 20px;
 }
 
 .modal__form {
@@ -125,6 +134,10 @@
   border-radius: 4px;
   border: none;
   font-weight: 700;
+}
+
+.modal__submit_content_type_login {
+  margin-top: 8px;
 }
 
 .modal__submit:hover {

@@ -15,10 +15,17 @@ function ModalWithForm({
     >
       <div className={`modal__content modal__content_type_${name}`}>
         <h2 className="modal__title">{title}</h2>
-        <button type="button" className="modal__close" onClick={onClose} />
+        <button
+          type="button"
+          className={`modal__close modal__close_content_type_${name}`}
+          onClick={onClose}
+        />
         <form onSubmit={onSubmit} className="modal__form">
           {children}
-          <button className="modal__submit" type="submit">
+          <button
+            className={`modal__submit modal__submit_content_type_${name}`}
+            type="submit"
+          >
             {buttonText}
           </button>
         </form>

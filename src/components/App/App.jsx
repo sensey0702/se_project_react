@@ -9,6 +9,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import Footer from "../Footer/Footer";
 import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import LoginModal from "../LoginModal/LoginModal";
 
 import { coordinates, APIkey } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
@@ -22,7 +23,7 @@ function App() {
     temp: { f: 999 },
     city: "",
   });
-  const [activeModal, setActiveModal] = useState("");
+  const [activeModal, setActiveModal] = useState("login");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
@@ -157,6 +158,10 @@ function App() {
             name="preview"
             deleteCard={handleDeleteCard}
           />
+          <LoginModal
+            activeModal={activeModal}
+            onClose={closeActiveModal}
+          ></LoginModal>
           <Footer />
         </CurrentTemperatureUnitContext.Provider>
       </div>
