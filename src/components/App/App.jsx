@@ -10,12 +10,14 @@ import Footer from "../Footer/Footer";
 import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import LoginModal from "../LoginModal/LoginModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
 
 import { coordinates, APIkey } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 import { deleteCard, getItems, addNewCard } from "../../utils/api";
+import { signUp, signIn } from "../../utils/auth";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -23,7 +25,7 @@ function App() {
     temp: { f: 999 },
     city: "",
   });
-  const [activeModal, setActiveModal] = useState("login");
+  const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
@@ -64,6 +66,30 @@ function App() {
           return item._id !== selectedCard._id;
         });
         setClothingItems(updatedItems);
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const handleSignIn = (user) => {
+    console.log(user);
+    // route user to profile
+    return signIn(user)
+      .then(() => {
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const handleSignUp = (user) => {
+    console.log(user);
+    // route user to profile
+    return signUp(user)
+      .then(() => {
         closeActiveModal();
       })
       .catch((err) => {
@@ -161,7 +187,13 @@ function App() {
           <LoginModal
             activeModal={activeModal}
             onClose={closeActiveModal}
+            onLogin={handleSignIn}
           ></LoginModal>
+          <RegisterModal
+            activeModal={activeModal}
+            onClose={closeActiveModal}
+            onRegister={handleSignUp}
+          ></RegisterModal>
           <Footer />
         </CurrentTemperatureUnitContext.Provider>
       </div>
