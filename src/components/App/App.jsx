@@ -18,7 +18,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 import { deleteCard, getItems, addNewCard } from "../../utils/api";
-import { signUp, signIn } from "../../utils/auth";
+import * as auth from "../../utils/auth";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -26,7 +26,7 @@ function App() {
     temp: { f: 999 },
     city: "",
   });
-  const [activeModal, setActiveModal] = useState("");
+  const [activeModal, setActiveModal] = useState("register");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
@@ -75,24 +75,26 @@ function App() {
       });
   };
 
-  const handleSignIn = (user) => {
-    console.log(user);
-    // route user to profile
-    return signIn(user)
-      .then(() => {
-        closeActiveModal();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
+  // const handleSignIn = (user) => {
+  //   console.log(user);
+  //   // route user to profile
+  //   return signIn(user)
+  //     .then(() => {
+  //       closeActiveModal();
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // };
 
-  const handleSignUp = (user) => {
-    console.log(user);
-    // route user to profile
-    return signUp(user)
+  const handleRegister = (user) => {
+    // register
+    return auth
+      .register(user)
       .then(() => {
         closeActiveModal();
+        // sign user in
+        // auth.signIn({email,password});
       })
       .catch((err) => {
         console.error(err);
@@ -192,12 +194,12 @@ function App() {
           <LoginModal
             activeModal={activeModal}
             onClose={closeActiveModal}
-            onLogin={handleSignIn}
+            // onLogin={handleSignIn}
           ></LoginModal>
           <RegisterModal
             activeModal={activeModal}
             onClose={closeActiveModal}
-            onRegister={handleSignUp}
+            handleRegister={handleRegister}
           ></RegisterModal>
           <Footer />
         </CurrentTemperatureUnitContext.Provider>

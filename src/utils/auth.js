@@ -4,7 +4,7 @@ function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
 
-function signUp({ name, avatar, email, password }) {
+function register({ name, avatar, email, password }) {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -20,4 +20,4 @@ function signIn({ email, password }) {
   }).then(checkResponse);
 }
 
-export { signUp, signIn };
+export { register, signIn };
