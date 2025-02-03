@@ -39,10 +39,12 @@ function RegisterModal({ activeModal, handleRegister, onClose }) {
     e.preventDefault();
     return handleRegister(data)
       .then(() => {
-        setEmail("");
-        setPassword("");
-        setName("");
-        setAvatar("");
+        setData({
+          email: "",
+          password: "",
+          name: "",
+          avatar: "",
+        });
       })
       .catch((err) => {
         console.error(err);

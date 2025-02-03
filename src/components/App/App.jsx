@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import "./App.css";
 
 import Header from "../Header/Header";
@@ -19,6 +19,7 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 
 import { deleteCard, getItems, addNewCard } from "../../utils/api";
 import * as auth from "../../utils/auth";
+import { setToken, getToken } from "../../utils/token";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -31,6 +32,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState({ email: "", password: "" });
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -75,31 +77,54 @@ function App() {
       });
   };
 
-  // const handleSignIn = (user) => {
-  //   console.log(user);
-  //   // route user to profile
-  //   return signIn(user)
-  //     .then(() => {
-  //       closeActiveModal();
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // };
-
-  const handleRegister = (user) => {
-    // register
+  const handleLogin = (user) => {
+    console.log(user);
     return auth
-      .register(user)
-      .then(() => {
+      .login(user)
+      .then((res) => {
+        console.log(res.token);
+        setToken(res.token);
+        setIsLoggedIn(true);
+        setUserData({ email, password });
         closeActiveModal();
-        // sign user in
-        // auth.signIn({email,password});
       })
       .catch((err) => {
         console.error(err);
       });
   };
+
+  const handleRegister = (user) => {
+    const password = user.password;
+
+    return auth
+      .register(user)
+      .then((registeredUser) => {
+        handleLogin({ ...registeredUser, password });
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  useEffect(() => {
+    const jwt = getToken();
+
+    if (!jwt) {
+      return;
+    }
+
+    // Call the function, passing it the JWT.
+    auth
+      .getUserInfo(jwt)
+      .then(({ email, password }) => {
+        // If the response is successful, log the user in, save their
+        // data to state, and navigate them to /ducks.
+        setIsLoggedIn(true);
+        setUserData({ email, password });
+      })
+      .catch(console.error);
+  }, []);
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -194,7 +219,7 @@ function App() {
           <LoginModal
             activeModal={activeModal}
             onClose={closeActiveModal}
-            // onLogin={handleSignIn}
+            handleLogin={handleLogin}
           ></LoginModal>
           <RegisterModal
             activeModal={activeModal}

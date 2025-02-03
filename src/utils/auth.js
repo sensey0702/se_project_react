@@ -12,7 +12,7 @@ function register({ name, avatar, email, password }) {
   }).then(checkResponse);
 }
 
-function signIn({ email, password }) {
+function login({ email, password }) {
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -20,4 +20,14 @@ function signIn({ email, password }) {
   }).then(checkResponse);
 }
 
-export { register, signIn };
+function getUserInfo(token) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+
+export { register, login, getUserInfo };
