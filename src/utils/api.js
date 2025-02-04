@@ -11,7 +11,10 @@ function getItems() {
 function deleteCard(card, token) {
   return fetch(`${baseUrl}/items/${card._id}`, {
     method: "DELETE",
-    headers: { Authorization: `Bearer ${token}` },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   }).then(checkResponse);
 }
 

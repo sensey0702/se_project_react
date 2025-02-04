@@ -16,6 +16,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { coordinates, APIkey } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 import { deleteCard, getItems, addNewCard } from "../../utils/api";
 import * as auth from "../../utils/auth";
@@ -27,12 +28,12 @@ function App() {
     temp: { f: 999 },
     city: "",
   });
-  const [activeModal, setActiveModal] = useState("register");
+  const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userData, setUserData] = useState({ email: "", password: "" });
+  const [currentUser, setCurrentUser] = useState(null);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -41,6 +42,14 @@ function App() {
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
+  };
+
+  const handleSignUpClick = () => {
+    setActiveModal("register");
+  };
+
+  const handleLoginClick = () => {
+    setActiveModal("login");
   };
 
   const closeActiveModal = () => {
@@ -55,8 +64,9 @@ function App() {
 
   const handleAddItemSubmit = (item) => {
     console.log(item);
+    const jwt = getToken();
     //adding the card to the server
-    return addNewCard(item).then((newCard) => {
+    return addNewCard(item, jwt).then((newCard) => {
       //addiing the card to the dom
       setClothingItems([newCard, ...clothingItems]);
       closeActiveModal();
@@ -64,7 +74,9 @@ function App() {
   };
 
   const handleDeleteCard = () => {
-    return deleteCard(selectedCard)
+    const jwt = getToken();
+    console.log("JWT Token:", jwt);
+    return deleteCard(selectedCard, jwt)
       .then(() => {
         const updatedItems = clothingItems.filter((item) => {
           return item._id !== selectedCard._id;
@@ -84,8 +96,6 @@ function App() {
       .then((res) => {
         console.log(res.token);
         setToken(res.token);
-        setIsLoggedIn(true);
-        setUserData({ email, password });
         closeActiveModal();
       })
       .catch((err) => {
@@ -117,11 +127,11 @@ function App() {
     // Call the function, passing it the JWT.
     auth
       .getUserInfo(jwt)
-      .then(({ email, password }) => {
+      .then((userData) => {
         // If the response is successful, log the user in, save their
         // data to state, and navigate them to /ducks.
         setIsLoggedIn(true);
-        setUserData({ email, password });
+        setCurrentUser(userData);
       })
       .catch(console.error);
   }, []);
@@ -170,66 +180,74 @@ function App() {
   }, [activeModal]);
 
   return (
-    <div className="page">
-      <div className="page__content">
-        <CurrentTemperatureUnitContext.Provider
-          value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-        >
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Main
-                  // pass clothingItems as a prop
-                  clothingItems={clothingItems}
-                  weatherData={weatherData}
-                  handleCardClick={handleCardClick}
-                />
-              }
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="page">
+        <div className="page__content">
+          <CurrentTemperatureUnitContext.Provider
+            value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+          >
+            <Header
+              handleAddClick={handleAddClick}
+              handleLoginClick={handleLoginClick}
+              handleSignUpClick={handleSignUpClick}
+              weatherData={weatherData}
+              isLoggedIn={isLoggedIn}
             />
-
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <Profile
-                    onCardClick={handleCardClick}
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Main
+                    // pass clothingItems as a prop
                     clothingItems={clothingItems}
-                    handleAddClick={handleAddClick}
+                    weatherData={weatherData}
+                    handleCardClick={handleCardClick}
                   />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
+                }
+              />
 
-          <AddItemModal
-            activeModal={activeModal}
-            onAddItem={handleAddItemSubmit}
-            onClose={closeActiveModal}
-          />
-          <ItemModal
-            activeModal={activeModal}
-            card={selectedCard}
-            onClose={closeActiveModal}
-            isOpen={activeModal === "preview"}
-            name="preview"
-            deleteCard={handleDeleteCard}
-          />
-          <LoginModal
-            activeModal={activeModal}
-            onClose={closeActiveModal}
-            handleLogin={handleLogin}
-          ></LoginModal>
-          <RegisterModal
-            activeModal={activeModal}
-            onClose={closeActiveModal}
-            handleRegister={handleRegister}
-          ></RegisterModal>
-          <Footer />
-        </CurrentTemperatureUnitContext.Provider>
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <Profile
+                      onCardClick={handleCardClick}
+                      clothingItems={clothingItems}
+                      handleAddClick={handleAddClick}
+                    />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+
+            <AddItemModal
+              activeModal={activeModal}
+              onAddItem={handleAddItemSubmit}
+              onClose={closeActiveModal}
+            />
+            <ItemModal
+              activeModal={activeModal}
+              card={selectedCard}
+              onClose={closeActiveModal}
+              isOpen={activeModal === "preview"}
+              name="preview"
+              deleteCard={handleDeleteCard}
+            />
+            <LoginModal
+              activeModal={activeModal}
+              onClose={closeActiveModal}
+              handleLogin={handleLogin}
+            ></LoginModal>
+            <RegisterModal
+              activeModal={activeModal}
+              onClose={closeActiveModal}
+              handleRegister={handleRegister}
+            ></RegisterModal>
+            <Footer />
+          </CurrentTemperatureUnitContext.Provider>
+        </div>
       </div>
-    </div>
+    </CurrentUserContext.Provider>
   );
 }
 
