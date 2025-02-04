@@ -30,4 +30,15 @@ function getUserInfo(token) {
   }).then(checkResponse);
 }
 
-export { register, login, getUserInfo };
+function editProfile({ name, avatar }, token) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkResponse);
+}
+
+export { register, login, getUserInfo, editProfile };
