@@ -12,6 +12,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 import { coordinates, APIkey } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
@@ -50,6 +51,10 @@ function App() {
 
   const handleLoginClick = () => {
     setActiveModal("login");
+  };
+
+  const handleEditProfileClick = () => {
+    setActiveModal("edit-profile");
   };
 
   const closeActiveModal = () => {
@@ -117,6 +122,25 @@ function App() {
       });
   };
 
+  const handleEditProfile = (data) => {
+    const jwt = getToken();
+
+    if (!jwt) {
+      return;
+    }
+
+    return auth
+      .editProfile(data, jwt)
+
+      .then((updatedProfileInfo) => {
+        setCurrentUser(updatedProfileInfo);
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   useEffect(() => {
     const jwt = getToken();
 
@@ -129,7 +153,7 @@ function App() {
       .getUserInfo(jwt)
       .then((userData) => {
         // If the response is successful, log the user in, save their
-        // data to state, and navigate them to /ducks.
+        // data to state
         setIsLoggedIn(true);
         setCurrentUser(userData);
       })
@@ -149,7 +173,6 @@ function App() {
     getItems()
       .then((data) => {
         // set the clothing items using the data that was returned
-        console.log(data);
         setClothingItems(data);
       })
       .catch(console.error);
@@ -214,6 +237,7 @@ function App() {
                       onCardClick={handleCardClick}
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
+                      handleEditProfileClick={handleEditProfileClick}
                     />
                   </ProtectedRoute>
                 }
@@ -243,6 +267,11 @@ function App() {
               onClose={closeActiveModal}
               handleRegister={handleRegister}
             ></RegisterModal>
+            <EditProfileModal
+              activeModal={activeModal}
+              onClose={closeActiveModal}
+              handleEditProfile={handleEditProfile}
+            ></EditProfileModal>
             <Footer />
           </CurrentTemperatureUnitContext.Provider>
         </div>

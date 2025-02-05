@@ -21,7 +21,6 @@ function ClothesSection({ onCardClick, clothingItems, handleAddClick }) {
       </div>
       <ul className="clothes-section__cards">
         {clothingItems.map((item) => {
-          console.log(item._id);
           if (!currentUser || !currentUser._id) {
             return null; // or a loading spinner
           }
