@@ -7,28 +7,34 @@ function SideBar({ handleEditProfileClick }) {
   const currentUser = useContext(CurrentUserContext);
   return (
     <div className="sidebar">
-      {currentUser.avatar ? (
-        <img
-          src={currentUser.avatar}
-          alt={currentUser.name}
-          className="sidebar__avatar"
-        />
-      ) : (
-        <img
-          src={placeholderAvatar}
-          alt={currentUser.name}
-          className="sidebar__avatar"
-        />
-      )}
-      <p className="sidebar__username">{currentUser.name}</p>
-      <button
-        onClick={handleEditProfileClick}
-        className="sidebar__edit-profile-button"
-        type="button"
-      >
-        Change Profile Data
-      </button>
-      <button>Log Out</button>
+      <div className="sidebar__user-info-wrapper">
+        {currentUser.avatar ? (
+          <img
+            src={currentUser.avatar}
+            alt={currentUser.name}
+            className="sidebar__avatar"
+          />
+        ) : (
+          <img
+            src={placeholderAvatar}
+            alt={currentUser.name}
+            className="sidebar__avatar"
+          />
+        )}
+        <p className="sidebar__username">{currentUser.name}</p>
+      </div>
+      <div className="sidebar_button-wrapper">
+        <button
+          onClick={handleEditProfileClick}
+          className="sidebar__edit-profile-button"
+          type="button"
+        >
+          Change profile data
+        </button>
+        <button className="sidebar__log-out-button" type="button">
+          Log out
+        </button>
+      </div>
     </div>
   );
 }
