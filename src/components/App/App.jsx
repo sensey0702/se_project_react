@@ -29,7 +29,7 @@ function App() {
     temp: { f: 999 },
     city: "",
   });
-  const [activeModal, setActiveModal] = useState("register");
+  const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
@@ -59,6 +59,17 @@ function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
+  };
+
+  const handleToggleModalChange = () => {
+    if (activeModal === "register") {
+      closeActiveModal();
+      setActiveModal("login");
+    }
+    if (activeModal === "login") {
+      closeActiveModal();
+      setActiveModal("register");
+    }
   };
 
   const handleToggleSwitchChange = () => {
@@ -261,11 +272,13 @@ function App() {
               activeModal={activeModal}
               onClose={closeActiveModal}
               handleLogin={handleLogin}
+              handleOrButton={handleToggleModalChange}
             ></LoginModal>
             <RegisterModal
               activeModal={activeModal}
               onClose={closeActiveModal}
               handleRegister={handleRegister}
+              handleOrButton={handleToggleModalChange}
             ></RegisterModal>
             <EditProfileModal
               activeModal={activeModal}

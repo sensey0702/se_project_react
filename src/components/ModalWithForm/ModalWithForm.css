@@ -169,6 +169,15 @@
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+.modal__button_type_or {
+  padding: 0 0 0 12px;
+  border: none;
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 16px;
+  line-height: 20px;
+}
+
 @media screen and (min-width: 320px) and (max-width: 550px) {
   .modal__content {
     max-width: 300px;

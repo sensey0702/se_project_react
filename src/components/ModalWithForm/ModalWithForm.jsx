@@ -8,7 +8,11 @@ function ModalWithForm({
   onClose,
   name,
   onSubmit,
+  handleOrButton,
 }) {
+  const registerModalOpen = name === "register";
+  const loginModalOpen = name === "login";
+
   return (
     <div
       className={`modal modal__type_${name} ${isOpen ? "modal_opened" : ""}`}
@@ -22,14 +26,32 @@ function ModalWithForm({
         />
         <form onSubmit={onSubmit} className="modal__form">
           {children}
-          <button
-            className={`modal__submit modal__submit_content_type_${name}`}
-            type="submit"
-          >
-            {buttonText}
-          </button>
-          {/* {if active modal is register add or log in button and set modal to login} */}
-          {/* {if active modal is log in add or register button and set modal to register} */}
+          <div className="modal__button-wrapper">
+            <button
+              className={`modal__submit modal__submit_content_type_${name}`}
+              type="submit"
+            >
+              {buttonText}
+            </button>
+            {registerModalOpen && (
+              <button
+                onClick={handleOrButton}
+                type="button"
+                className="modal__button_type_or"
+              >
+                or Log in
+              </button>
+            )}
+            {loginModalOpen && (
+              <button
+                onClick={handleOrButton}
+                type="button"
+                className="modal__button_type_or"
+              >
+                or Sign up
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </div>
