@@ -38,11 +38,15 @@
   padding: 28px 28px 36px;
 }
 
+.modal__content_type_edit-profile {
+  padding: 28px 28px 36px;
+}
+
 .modal__title {
   margin: 0 0 24px;
   font-size: 16px;
   line-height: 20px;
-  width: 95px;
+  width: 150px;
 }
 
 .modal__close {
@@ -150,6 +154,10 @@
 }
 
 .modal__submit_content_type_register {
+  margin-top: 8px;
+}
+
+.modal__submit_content_type_edit-profile {
   margin-top: 8px;
 }
 

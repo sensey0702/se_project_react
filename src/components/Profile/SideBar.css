@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 24px;
   max-width: 300px;
-  align-items: center;
+  align-items: start;
 }
 
 .sidebar__user-info-wrapper {
@@ -17,6 +17,7 @@
 .sidebar__avatar {
   width: 56px;
   height: 56px;
+  border-radius: 50%;
 }
 
 .sidebar__username {
@@ -40,6 +41,8 @@
   padding: 0;
   font-weight: 700;
   background-color: white;
+  text-align: start;
+  width: 180px;
 }
 
 .sidebar__log-out-button {

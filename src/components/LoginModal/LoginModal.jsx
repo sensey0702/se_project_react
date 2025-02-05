@@ -3,15 +3,6 @@ import { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function LoginModal({ activeModal, handleLogin, onClose }) {
-  // const [email, setEmail] = useState("");
-  // const handleEmailChange = (e) => {
-  //   setEmail(e.target.value);
-  // };
-  // const [password, setPassword] = useState("");
-  // const handlePasswordChange = (e) => {
-  //   setPassword(e.target.value);
-  // };
-
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -72,7 +63,6 @@ function LoginModal({ activeModal, handleLogin, onClose }) {
           onChange={handleChange}
         />
       </label>
-      {/* <Link>or Register</Link> */}
     </ModalWithForm>
   );
 }

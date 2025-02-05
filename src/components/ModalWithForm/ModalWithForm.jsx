@@ -28,6 +28,8 @@ function ModalWithForm({
           >
             {buttonText}
           </button>
+          {/* {if active modal is register add or log in button and set modal to login} */}
+          {/* {if active modal is log in add or register button and set modal to register} */}
         </form>
       </div>
     </div>
