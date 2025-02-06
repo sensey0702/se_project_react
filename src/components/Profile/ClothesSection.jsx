@@ -4,7 +4,12 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 import ItemCard from "../ItemCard/ItemCard";
 
-function ClothesSection({ onCardClick, clothingItems, handleAddClick }) {
+function ClothesSection({
+  onCardClick,
+  clothingItems,
+  handleAddClick,
+  onCardLike,
+}) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -29,7 +34,12 @@ function ClothesSection({ onCardClick, clothingItems, handleAddClick }) {
 
           if (isOwn) {
             return (
-              <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
+              <ItemCard
+                key={item._id}
+                item={item}
+                onCardClick={onCardClick}
+                onCardLike={onCardLike}
+              />
             );
           }
         })}
