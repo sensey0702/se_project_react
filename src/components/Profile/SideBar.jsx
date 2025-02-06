@@ -3,7 +3,7 @@ import placeholderAvatar from "../../assets/placeholder-avatar.png";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function SideBar({ handleEditProfileClick }) {
+function SideBar({ handleEditProfileClick, onLogOutClick }) {
   const currentUser = useContext(CurrentUserContext);
   return (
     <div className="sidebar">
@@ -31,7 +31,11 @@ function SideBar({ handleEditProfileClick }) {
         >
           Change profile data
         </button>
-        <button className="sidebar__log-out-button" type="button">
+        <button
+          onClick={onLogOutClick}
+          className="sidebar__log-out-button"
+          type="button"
+        >
           Log out
         </button>
       </div>

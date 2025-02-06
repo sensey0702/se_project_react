@@ -28,7 +28,7 @@ import {
   removeCardLike,
 } from "../../utils/api";
 import * as auth from "../../utils/auth";
-import { setToken, getToken } from "../../utils/token";
+import { setToken, getToken, removeToken } from "../../utils/token";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -42,6 +42,8 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -86,14 +88,11 @@ function App() {
   };
 
   const handleAddItemSubmit = (item) => {
-    console.log(item);
     const jwt = getToken();
     //adding the card to the server
     return addNewCard(item, jwt).then((newCard) => {
       //addiing the card to the dom
-      console.log(newCard);
       setClothingItems([newCard, ...clothingItems]);
-      console.log(newCard);
       closeActiveModal();
     });
   };
@@ -114,12 +113,11 @@ function App() {
   };
 
   const handleLogin = (user) => {
-    console.log(user);
     return auth
       .login(user)
       .then((res) => {
-        console.log(res.token);
         setToken(res.token);
+        setIsLoggedIn(true);
         closeActiveModal();
       })
       .catch((err) => {
@@ -170,7 +168,7 @@ function App() {
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
-          .catch((err) => console.log(err))
+          .catch((err) => console.error(err))
       : // if not, send a request to remove the user's id from the card's likes array
         // the first argument is the card's id
         removeCardLike(id, token)
@@ -179,7 +177,13 @@ function App() {
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
-          .catch((err) => console.log(err));
+          .catch((err) => console.error(err));
+  };
+
+  const handleLogOut = () => {
+    removeToken();
+    navigate("/");
+    setIsLoggedIn(false);
   };
 
   useEffect(() => {
@@ -281,6 +285,7 @@ function App() {
                       handleAddClick={handleAddClick}
                       handleEditProfileClick={handleEditProfileClick}
                       onCardLike={handleCardLike}
+                      onLogOutClick={handleLogOut}
                     />
                   </ProtectedRoute>
                 }

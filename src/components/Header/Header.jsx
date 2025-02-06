@@ -67,7 +67,7 @@ function Header({
             {" "}
             Sign Up
           </button>
-          <button onClick={handleLoginClick} className="header__signin-button">
+          <button onClick={handleLoginClick} className="header__login-button">
             {" "}
             Log in
           </button>
