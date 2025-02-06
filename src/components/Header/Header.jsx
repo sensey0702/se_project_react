@@ -45,20 +45,12 @@ function Header({
       {isLoggedIn ? (
         <Link to="/profile" className="header__profile-link">
           <div className="header__user-container">
-            <p className="header__username">{currentUser.name}</p>
-            {currentUser.avatar ? (
-              <img
-                src={currentUser.avatar}
-                alt={currentUser.name}
-                className="header__avatar"
-              />
-            ) : (
-              <img
-                src={placeholderAvatar}
-                alt={currentUser.name}
-                className="header__avatar"
-              />
-            )}
+            <p className="header__username">{currentUser?.name || "Guest"}</p>
+            <img
+              src={currentUser?.avatar || placeholderAvatar}
+              alt={currentUser?.name || "Guest Avatar"}
+              className="header__avatar"
+            />
           </div>
         </Link>
       ) : (

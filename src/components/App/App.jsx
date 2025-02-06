@@ -112,12 +112,24 @@ function App() {
       });
   };
 
+  function getUserInfo(jwt) {
+    auth
+      .getUserInfo(jwt)
+      .then((userData) => {
+        // If the response is successful, log the user in, save their
+        // data to state
+        setIsLoggedIn(true);
+        setCurrentUser(userData);
+      })
+      .catch(console.error);
+  }
+
   const handleLogin = (user) => {
     return auth
       .login(user)
       .then((res) => {
         setToken(res.token);
-        setIsLoggedIn(true);
+        getUserInfo(res.token);
         closeActiveModal();
       })
       .catch((err) => {
@@ -168,7 +180,7 @@ function App() {
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
-          .catch((err) => console.error(err))
+          .catch((err) => console.log(err))
       : // if not, send a request to remove the user's id from the card's likes array
         // the first argument is the card's id
         removeCardLike(id, token)
@@ -177,7 +189,7 @@ function App() {
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
-          .catch((err) => console.error(err));
+          .catch((err) => console.log(err));
   };
 
   const handleLogOut = () => {
