@@ -130,30 +130,20 @@ function App() {
   }
 
   const handleLogin = (user) => {
-    return auth
-      .login(user)
-      .then((res) => {
-        setToken(res.token);
-        getUserInfo(res.token);
-        closeActiveModal();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    return auth.login(user).then((res) => {
+      setToken(res.token);
+      getUserInfo(res.token);
+      closeActiveModal();
+    });
   };
 
   const handleRegister = (user) => {
     const password = user.password;
 
-    return auth
-      .register(user)
-      .then((registeredUser) => {
-        handleLogin({ ...registeredUser, password });
-        closeActiveModal();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    return auth.register(user).then((registeredUser) => {
+      handleLogin({ ...registeredUser, password });
+      closeActiveModal();
+    });
   };
 
   const handleEditProfile = (data) => {
@@ -201,6 +191,12 @@ function App() {
     removeToken();
     navigate("/");
     setIsLoggedIn(false);
+    setCurrentUser({
+      name: "",
+      email: "",
+      avatar: "",
+      _id: "",
+    });
   };
 
   useEffect(() => {
@@ -288,6 +284,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     onCardLike={handleCardLike}
+                    isLoggedIn={isLoggedIn}
                   />
                 }
               />
@@ -303,6 +300,7 @@ function App() {
                       handleEditProfileClick={handleEditProfileClick}
                       onCardLike={handleCardLike}
                       onLogOutClick={handleLogOut}
+                      isLoggedIn={isLoggedIn}
                     />
                   </ProtectedRoute>
                 }

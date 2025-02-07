@@ -4,11 +4,6 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function ItemModal({ card, onClose, isOpen, name, deleteCard }) {
   const currentUser = useContext(CurrentUserContext);
-
-  if (!currentUser || !currentUser._id) {
-    return null; // or a loading spinner
-  }
-
   const isOwn = card.owner === currentUser._id;
 
   return (
