@@ -40,25 +40,25 @@ function LoginModal({ activeModal, handleLogin, onClose, handleOrButton }) {
       onSubmit={handleSubmit}
       handleOrButton={handleOrButton}
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="login-email" className="modal__label">
         Email{" "}
         <input
           name="email"
           type="email"
           className="modal__input"
-          id="email"
+          id="login-email"
           placeholder="Email"
           value={data.email}
           onChange={handleChange}
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="login-password" className="modal__label">
         Password{" "}
         <input
           name="password"
           type="password"
           className="modal__input"
-          id="password"
+          id="login-password"
           placeholder="Password"
           value={data.password}
           onChange={handleChange}

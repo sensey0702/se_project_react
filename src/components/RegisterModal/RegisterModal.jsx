@@ -49,37 +49,37 @@ function RegisterModal({
       onSubmit={handleSubmit}
       handleOrButton={handleOrButton}
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="register-email" className="modal__label">
         Email*{" "}
         <input
           name="email"
           type="email"
           className="modal__input"
-          id="email"
+          id="register-email"
           placeholder="Email"
           value={data.email}
           onChange={handleChange}
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="register-password" className="modal__label">
         Password*{" "}
         <input
           name="password"
           type="password"
           className="modal__input"
-          id="password"
+          id="register-password"
           placeholder="Password"
           value={data.password}
           onChange={handleChange}
         />
       </label>
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="register-name" className="modal__label">
         Name{" "}
         <input
           name="name"
           type="text"
           className="modal__input"
-          id="name"
+          id="register-name"
           placeholder="Name"
           value={data.name}
           onChange={handleChange}

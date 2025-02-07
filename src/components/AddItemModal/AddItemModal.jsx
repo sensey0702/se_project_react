@@ -38,12 +38,12 @@ function AddItemModal({ activeModal, onAddItem, onClose }) {
       name="add-garment"
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="add-item-name" className="modal__label">
         Name{" "}
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="add-item-name"
           placeholder="Name"
           value={name}
           onChange={handleNameChange}

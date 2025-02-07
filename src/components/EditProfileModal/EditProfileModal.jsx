@@ -44,13 +44,13 @@ function EditProfileModal({ activeModal, handleEditProfile, onClose }) {
       name="edit-profile"
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="profile-name" className="modal__label">
         Name *{" "}
         <input
           name="name"
           type="text"
           className="modal__input"
-          id="name"
+          id="profile-name"
           placeholder="Name"
           value={data.name}
           onChange={handleChange}
