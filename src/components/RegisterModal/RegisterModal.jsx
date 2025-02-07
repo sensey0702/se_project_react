@@ -48,6 +48,7 @@ function RegisterModal({
       name="register"
       onSubmit={handleSubmit}
       handleOrButton={handleOrButton}
+      orButtonText="or Log in"
     >
       <label htmlFor="register-email" className="modal__label">
         Email*{" "}
