@@ -39,7 +39,7 @@ function LoginModal({ activeModal, handleLogin, onClose, handleOrButton }) {
       name="login"
       onSubmit={handleSubmit}
       handleOrButton={handleOrButton}
-      orButtonText="or Sign in"
+      orButtonText="or Sign up"
     >
       <label htmlFor="login-email" className="modal__label">
         Email{" "}
