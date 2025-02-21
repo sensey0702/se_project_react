@@ -1,6 +1,5 @@
 import { checkResponse } from "./api";
-
-const baseUrl = "http://localhost:3001";
+import { baseUrl } from "../utils/constants";
 
 function register({ name, avatar, email, password }) {
   return fetch(`${baseUrl}/signup`, {
