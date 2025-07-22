@@ -1,13 +1,17 @@
 # 🌦️ What to Wear Weather App
 
+## **Link**
+
+(https://www.wtwr.nard.ca/)
+
 ## **Overview**
 
 Welcome to **WTWR**, a React + Vite web app that helps you choose the best clothing for the day's weather! This app allows users to:  
 ✔️ **Add clothing items** to their virtual wardrobe  
-✔️ **Like** and save favorite clothing items
+✔️ **Like** your favorite clothing items
 ✔️ **Update your profile** by changing your avatar and username  
 ✔️ **Filter clothing** based on the day's temperature of your current location  
-✔️ **View real-time weather** using an external weather API
+✔️ **View real-time weather** using an external weather API (currently has hardcoded coordinates for Council Bluffs, IA but will be adding dynamic coordinates soon based on user location).
 
 The app is powered by a **Node.js** with **Express.js**, which handles authentication, clothing item storage, and user data.
 

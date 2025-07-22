@@ -13,7 +13,7 @@ export const filterWeatherData = (data) => {
     F: `${Math.round(data.main.temp)} ° F`,
     C: `${Math.round(((data.main.temp - 32) * 5) / 9)} ° C`,
   };
-  result.type = getWeatherType(data.main.temp.F);
+  result.type = getWeatherType(data.main.temp);
 
   return result;
 };

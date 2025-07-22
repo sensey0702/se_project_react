@@ -222,6 +222,7 @@ function App() {
     getWeather(coordinates, APIkey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
+        console.log(data);
         setWeatherData(filteredData);
       })
       .catch(console.error);
